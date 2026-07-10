@@ -1,8 +1,16 @@
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+bun.lock
+
+# Convex
+.convex/
+
 # Python
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
 build/
 *.egg
 .venv/
