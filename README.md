@@ -78,10 +78,43 @@ streamlit run app.py
 │   ├── agent.py           # Core self-healing loop
 │   ├── viz.py             # Auto-selected Plotly charts
 │   └── summary.py         # Plain-English insight generation
+├── tests/
+│   ├── __init__.py
+│   ├── conftest.py        # Shared fixtures (sample database, mock LLM, DataFrames)
+│   ├── test_validator.py  # SQL validation (SELECT, DDL, syntax errors)
+│   ├── test_schema.py     # Schema discovery & relationships
+│   ├── test_executor.py   # Sandboxed execution & error handling
+│   ├── test_viz.py        # Chart auto-detection (bar/pie/line/scatter)
+│   ├── test_summary.py    # Plain-English insight generation
+│   └── test_agent.py      # Self-healing loop with mocked LLM
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
+
+## Running Tests
+
+```bash
+# Install test dependency
+pip install pytest
+
+# Run all tests (a sample DuckDB database is auto-created and destroyed)
+pytest tests/ -v
+
+# Run a specific test module
+pytest tests/test_validator.py -v
+
+# Run a specific test
+pytest tests/test_executor.py::TestExecuteQuery::test_simple_select -v
+```
+
+The test suite creates a temporary DuckDB database with sample tables (`users`, `orders`, `logs`) and runs **90+ tests** covering:
+- SQL validation (valid SELECTs, blocked DDL/DML, syntax errors)
+- Schema discovery (tables, columns, types, row counts, relationships, caching)
+- Sandboxed execution (success, errors, read-only enforcement, timeout, row limits)
+- Chart auto-detection (pie, line, bar, scatter, empty DataFrames)
+- Summary generation (template-based and LLM-enriched)
+- Agent self-healing loop (mock LLM, retry logic, retry exhaustion, empty DB)
 
 ## Configuration
 
