@@ -132,11 +132,13 @@ function Navbar() {
             <span className="hidden sm:inline">GitHub</span>
           </a>
           <a
-            href="#try-it"
+            href="./TestWebsite/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-brand-500 hover:bg-brand-400 text-white text-xs sm:text-sm font-medium transition-all hover:shadow-lg hover:shadow-brand-500/25 active:scale-95"
           >
             <Play className="w-3.5 h-3.5" />
-            <span>Try It</span>
+            <span>Launch Demo</span>
           </a>
         </div>
       </div>
@@ -201,8 +203,17 @@ function Hero() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#how-it-works"
+            href="./TestWebsite/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95"
+          >
+            <Sparkles className="w-4 h-4" />
+            Launch Interactive Demo
+          </a>
+          <a
+            href="#how-it-works"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass glass-hover text-zinc-300 font-medium transition-all active:scale-95"
           >
             See How It Works
             <ChevronDown className="w-4 h-4" />
@@ -552,21 +563,23 @@ function TryIt() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://github.com/pavanvzm/SQL-Analytics-Agent"
+                href="./TestWebsite/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95"
               >
-                <GithubIcon className="w-4 h-4" />
-                Get Started on GitHub
+                <Sparkles className="w-4 h-4" />
+                Launch Web Playground
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
               <a
-                href="#tech-stack"
+                href="https://github.com/pavanvzm/SQL-Analytics-Agent"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass glass-hover text-zinc-300 font-medium transition-all active:scale-95"
               >
-                <ArrowRight className="w-4 h-4" />
-                Explore the Stack
+                <GithubIcon className="w-4 h-4" />
+                Get Started on GitHub
               </a>
             </div>
           </div>
