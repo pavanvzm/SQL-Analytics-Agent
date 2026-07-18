@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
@@ -15,6 +15,7 @@ import {
   LayoutDashboard,
   Play,
 } from "lucide-react";
+import Playground from "./components/Playground";
 
 // GitHub logo SVG (not available in lucide-react)
 function GithubIcon({ className }: { className?: string }) {
@@ -65,7 +66,7 @@ function FadeIn({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === "up" ? 40 : 0,
@@ -131,15 +132,15 @@ function Navbar() {
             <GithubIcon className="w-4 h-4" />
             <span className="hidden sm:inline">GitHub</span>
           </a>
-          <a
-            href="./TestWebsite/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-brand-500 hover:bg-brand-400 text-white text-xs sm:text-sm font-medium transition-all hover:shadow-lg hover:shadow-brand-500/25 active:scale-95"
+          <button
+            onClick={() => {
+              document.getElementById("interactive-playground")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-brand-500 hover:bg-brand-400 text-white text-xs sm:text-sm font-medium transition-all hover:shadow-lg hover:shadow-brand-500/25 active:scale-95 cursor-pointer"
           >
             <Play className="w-3.5 h-3.5" />
-            <span>Launch Demo</span>
-          </a>
+            <span>Use Agent Demo</span>
+          </button>
         </div>
       </div>
     </motion.nav>
@@ -202,15 +203,15 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.65 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="./TestWebsite/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95"
+          <button
+            onClick={() => {
+              document.getElementById("interactive-playground")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95 cursor-pointer"
           >
             <Sparkles className="w-4 h-4" />
-            Launch Interactive Demo
-          </a>
+            Use Embedded Agent
+          </button>
           <a
             href="#how-it-works"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass glass-hover text-zinc-300 font-medium transition-all active:scale-95"
@@ -562,16 +563,16 @@ function TryIt() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="./TestWebsite/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95"
+              <button
+                onClick={() => {
+                  document.getElementById("interactive-playground")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-xl hover:shadow-brand-500/25 active:scale-95 cursor-pointer"
               >
                 <Sparkles className="w-4 h-4" />
-                Launch Web Playground
+                Interactive Agent Sandbox
                 <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              </button>
               <a
                 href="https://github.com/pavanvzm/SQL-Analytics-Agent"
                 target="_blank"
@@ -659,6 +660,21 @@ export default function App() {
       <Navbar />
       <Hero />
       <Stats />
+      {/* Interactive embedded playground section */}
+      <section id="interactive-playground" className="relative px-4 sm:px-6 lg:px-8 py-20 bg-zinc-900/30 border-y border-white/5">
+        <div className="mx-auto max-w-6xl text-center mb-12">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-brand-500/10 text-brand-400 border border-brand-500/20 mb-4 animate-pulse">
+            Interactive Demo
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+            Try the SQL Agent Now
+          </h2>
+          <p className="mt-4 text-zinc-400 max-w-lg mx-auto text-sm sm:text-base">
+            Type natural language requests or test safety limits directly in the embedded sandbox below.
+          </p>
+        </div>
+        <Playground />
+      </section>
       <HowItWorks />
       <Features />
       <TechStack />
